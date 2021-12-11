@@ -54,16 +54,16 @@ class DumboOctopus:
         logging.debug("r %s c %s", self.row, self.column)
 
 
-class OctopusBoard(object):
-    def __init__(self, input):
-        self.rows = len(input)
-        self.columns = len(input[0])
+class OctopusBoard:
+    def __init__(self, data):
+        self.rows = len(data)
+        self.columns = len(data[0])
         self.board = self._empty_board()
         self.flash_count = 0
         for row in range(self.rows):
             for column in range(self.columns):
                 self.board[row][column] = DumboOctopus(
-                    energy=int(input[row][column]), row=row, column=column
+                    energy=int(data[row][column]), row=row, column=column
                 )
 
     def show_board(self):
@@ -73,7 +73,7 @@ class OctopusBoard(object):
         board = []
         for row in range(self.rows):
             board.append([])
-            for column in range(self.columns):
+            for _ in range(self.columns):
                 board[row].append(None)
         return board
 
@@ -93,8 +93,7 @@ class OctopusBoard(object):
 
         if self.flash_count == self.rows * self.columns:
             raise EverybodyFlashing
-        else:
-            self.flash_count = 0
+        self.flash_count = 0
 
         for row in range(self.rows):
             for column in range(self.columns):
