@@ -1,5 +1,5 @@
-from pprint import pprint
 import logging
+from pprint import pprint
 
 logging.basicConfig(level=logging.INFO)
 
